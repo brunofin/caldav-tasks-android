@@ -4,17 +4,17 @@
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical">
         <TextView android:id="@+id/widget_title" android:layout_width="0dp" android:layout_weight="1" android:layout_height="48dp"
             android:gravity="center_vertical" android:text="@string/app_name" android:textSize="20sp" android:textStyle="bold" android:textColor="@color/widget_text" />
-        <Button android:id="@+id/widget_refresh" android:layout_width="48dp" android:layout_height="48dp" android:text="↻" android:textSize="24sp"
+        <Button android:id="@+id/widget_refresh" android:layout_width="48dp" android:layout_height="48dp" android:text="@string/refresh_symbol" android:textSize="24sp"
             android:contentDescription="@string/refresh" android:textColor="@color/widget_primary" android:background="?android:attr/selectableItemBackgroundBorderless" />
     </LinearLayout>
     <TextView android:id="@+id/widget_summary" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="12sp" android:textColor="@color/widget_secondary" android:maxLines="3" />
     <LinearLayout android:layout_width="match_parent" android:layout_height="48dp">
-        <Button android:id="@+id/widget_active" android:layout_width="0dp" android:layout_weight="1" android:layout_height="match_parent" android:text="Active" android:textAllCaps="false" android:textColor="@color/widget_primary" android:background="?android:attr/selectableItemBackground" />
+        <Button android:id="@+id/widget_active" android:layout_width="0dp" android:layout_weight="1" android:layout_height="match_parent" android:text="@string/filter_active" android:textAllCaps="false" android:textColor="@color/widget_primary" android:background="?android:attr/selectableItemBackground" />
         <Button android:id="@+id/widget_all" android:layout_width="0dp" android:layout_weight="1" android:layout_height="match_parent" android:text="All" android:textAllCaps="false" android:textColor="@color/widget_primary" android:background="?android:attr/selectableItemBackground" />
-        <Button android:id="@+id/widget_done" android:layout_width="0dp" android:layout_weight="1" android:layout_height="match_parent" android:text="Done" android:textAllCaps="false" android:textColor="@color/widget_primary" android:background="?android:attr/selectableItemBackground" />
+        <Button android:id="@+id/widget_done" android:layout_width="0dp" android:layout_weight="1" android:layout_height="match_parent" android:text="@string/filter_done" android:textAllCaps="false" android:textColor="@color/widget_primary" android:background="?android:attr/selectableItemBackground" />
     </LinearLayout>
     <ListView android:id="@+id/widget_list" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"
         android:divider="@android:color/transparent" android:dividerHeight="4dp" android:scrollbars="vertical" />
     <TextView android:id="@+id/widget_empty" android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="16dp"
-        android:text="Add a connection in CalDAV Tasks" android:textColor="@color/widget_secondary" />
+        android:text="@string/widget_empty" android:textColor="@color/widget_secondary" />
 </LinearLayout>

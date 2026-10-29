@@ -10,9 +10,8 @@ import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 import java.util.UUID
 
-class TasksRepository(context: Context) {
+class TasksRepository(context: Context, private val dav: CalDavClient = CalDavClient()) {
     private val store = SecureStore(context)
-    private val dav = CalDavClient()
     private val mutex = Mutex()
     private var storageFailed = false
     private val mutable = MutableStateFlow(try { store.read() } catch (_: Exception) {

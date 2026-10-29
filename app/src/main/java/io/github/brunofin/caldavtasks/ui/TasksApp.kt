@@ -10,13 +10,15 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.outlined.SubdirectoryArrowRight
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextDecoration
@@ -111,7 +113,7 @@ fun TasksApp(model: TasksViewModel, targetList: String?, consumeTarget: () -> Un
                     }
                 }
                 state.errors["storage"]?.let { Text(it, color = MaterialTheme.colorScheme.error, modifier = Modifier.padding(16.dp)) }
-                LazyColumn(state = listState, modifier = Modifier.weight(1f), contentPadding = PaddingValues(12.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                LazyColumn(state = listState, modifier = Modifier.weight(1f).testTag("task-list"), contentPadding = PaddingValues(12.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                     items(rows, key = { it.key }, contentType = { it::class.simpleName }) { row ->
                         when (row) {
                             is ListRow.AccountHeader -> {
@@ -207,14 +209,15 @@ private fun TaskCard(task: Task, depth: Int, editable: Boolean, toggle: () -> Un
     Surface(Modifier.fillMaxWidth().padding(start = (depth.coerceAtMost(4) * 12).dp),
         shape = MaterialTheme.shapes.medium, color = MaterialTheme.colorScheme.surfaceContainerHigh) {
         Row(Modifier.padding(end = 4.dp), verticalAlignment = Alignment.CenterVertically) {
-            Checkbox(checked = task.completed, onCheckedChange = { toggle() }, enabled = editable)
+            Checkbox(checked = task.completed, onCheckedChange = { toggle() }, enabled = editable,
+                modifier = Modifier.semantics { contentDescription = if (task.completed) "Reopen ${task.title}" else "Complete ${task.title}" })
             Column(Modifier.weight(1f).padding(vertical = 12.dp)) {
                 Text(task.title, style = MaterialTheme.typography.bodyMedium,
                     textDecoration = if (task.completed) TextDecoration.LineThrough else null)
                 if (task.recurring || !task.editable) Text("Read-only · edit in another client", style = MaterialTheme.typography.labelSmall)
             }
             Action(Icons.Outlined.Edit, "Edit ${task.title}", editable, edit)
-            Action(Icons.AutoMirrored.Outlined.SubdirectoryArrowRight, "Add subtask to ${task.title}", editable, child)
+            Action(Icons.Outlined.SubdirectoryArrowRight, "Add subtask to ${task.title}", editable, child)
             Action(Icons.Outlined.DeleteOutline, "Delete ${task.title}", editable, delete)
         }
     }

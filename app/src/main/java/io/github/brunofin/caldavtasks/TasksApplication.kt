@@ -9,9 +9,9 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.drop
 import java.util.concurrent.TimeUnit
 
-class TasksApplication : Application() {
-    val repository by lazy { TasksRepository(this) }
-    val presentation by lazy { PresentationStore(this) }
+open class TasksApplication : Application() {
+    open val repository by lazy { TasksRepository(this) }
+    open val presentation by lazy { PresentationStore(this) }
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
     override fun onCreate() {
         super.onCreate()

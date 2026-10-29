@@ -3,10 +3,16 @@
 Native Kotlin/Compose Material 3 app; CalDAV only. App ID `io.github.brunofin.caldavtasks`.
 See README for architecture, build prerequisites and current verification limits.
 
-- User explicitly chose **source code only**. Do not install SDK/JDK/emulator or
-  accept Android licenses without fresh authorization. Android compilation and
-  on-device/UI/widget behavior remain UNVERIFIED. Never claim the APK works based
-  solely on the SDK-free checks.
+- User subsequently authorized SDK installation and native testing in the existing
+  Waydroid session. SDK: `~/Android/Sdk`; JDK 21 installed user-locally. Machine-local
+  paths live ONLY in gitignored `local.properties` / `.gradle/config.properties`.
+  `tools/gradle.sh` uses those settings without changing global Java or shell PATH.
+  Do not reinstall/reconfigure Waydroid or install an emulator as a side effect.
+- Verified: debug/test APK compilation, both JVM suites (28 checks), lint (0 errors /
+  19 advisory warnings), and 6 native tests on Waydroid Android11/API30. Widget
+  collection actions were tested in a private AppWidgetHost, NOT a real launcher.
+  Modern Android/physical devices, accessibility and real CalDAV servers remain
+  unverified. Do not infer those from fixture results.
 - Use existing Kotlin/JVM tooling for `tools/test-core.sh` and `tools/test-dav.sh`.
   `python3 tools/check-resources.py` checks XML/references, NOT Android compilation.
 - No account passwords, task content, signing keys or `local.properties` in git.
@@ -14,6 +20,9 @@ See README for architecture, build prerequisites and current verification limits
   must fail closed, never regenerate over existing data.
 - No real CalDAV mutations without explicit user authorization. Fixture clients
   use an OkHttp interceptor and never contact an account server.
+- Android instrumentation uses `NativeTestRunner`/`FixtureApplication`, an isolated
+  encrypted cache and an interceptor that rejects every non-fixture host. Never
+  seed synthetic data into the production store or import desktop accounts for tests.
 - Keep requests HTTPS and same-origin, redirects disabled, standard TLS intact.
   No credential-bearing URLs/query tokens. DTDs/external entities are prohibited.
 - Preserve calendar metadata and VALARM. Only mutate one non-recurring VTODO

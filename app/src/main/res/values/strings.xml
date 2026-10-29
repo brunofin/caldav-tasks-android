@@ -3,4 +3,10 @@
     <string name="widget_description">All your CalDAV accounts and task lists, grouped and collapsible.</string>
     <string name="refresh">Refresh</string>
     <string name="add_task">Add task</string>
+    <string name="add_symbol" translatable="false">+</string>
+    <string name="refresh_symbol" translatable="false">↻</string>
+    <string name="filter_active">Active</string>
+    <string name="filter_all">All</string>
+    <string name="filter_done">Done</string>
+    <string name="widget_empty">Add a connection in CalDAV Tasks</string>
 </resources>

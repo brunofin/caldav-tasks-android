@@ -12,6 +12,7 @@ import android.os.Bundle
 import android.widget.RemoteViews
 import androidx.work.*
 import io.github.brunofin.caldavtasks.*
+import io.github.brunofin.caldavtasks.R
 import io.github.brunofin.caldavtasks.core.TaskFilter
 
 /** RemoteViews collection: native launcher scrolling, no embedded WebView or second task database. */
