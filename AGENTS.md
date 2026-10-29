@@ -142,8 +142,9 @@ cases were validated. Automated protocol/native tests use synthetic data.
 
 ## Publication
 
-- No GitHub repository/release has been published for this Android app yet. Ask
-  public/private before creating one; use the personal `brunofin` account.
+- Public repository: `https://github.com/brunofin/caldav-tasks-android`, published
+  with the user's explicit approval. Use the personal `brunofin` account. No APK
+  release/store listing has been published; do not publish releases as a side effect.
 - Keep README's Dux companion link and distinguish user-reported physical-phone
   use from automated verification. Do not invent download/store links.
 - Preserve MIT licensing. Do not commit APKs, generated reports, or signing material.
